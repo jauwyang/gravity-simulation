@@ -64,7 +64,10 @@ def doTypeOfCollision(space, p1, p2):
 
     # TODO: determine whether collision is inelastic vs elastic (bounce off or stick together)
     # doElasticCollison(p1, p2)
-    doInelasticCollision(p1, p2, space)
+
+    p1.collided = True
+    p2.collided = True
+    # doInelasticCollision(p1, p2, space)
 
 
 def combineCollisionColours(space, p1, p2):
@@ -110,9 +113,8 @@ def checkCollision(space, window):
     qtree.draw(window)
 
     for mainParticle in space.particles:
-        range = Ring(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius * 2.5)
+        range = Rectangle(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius, mainParticle.radius*1.2)
         closeParticles = qtree.query(range)
         for otherParticle in closeParticles:
             if (mainParticle != otherParticle and mainParticle.intersects(otherParticle)):
-                print("COLLISION")
                 doTypeOfCollision(space, mainParticle, otherParticle)

@@ -9,15 +9,11 @@ particles = [
     "staticColour": False,
     "position": {
         "xPos": WINDOW_WIDTH / 4 * SCALE,
-        "yPos": WINDOW_HEIGHT * SCALE * 47/100
+        "yPos": WINDOW_HEIGHT * SCALE * 50/100
     },
     "velocity": {
-        "xVel": 100,
+        "xVel": 5,
         "yVel": 0,
-    },
-    "acceleration": {
-        "xAccel": 0,
-        "yAccel": 0
     }
     },
     {
@@ -28,15 +24,11 @@ particles = [
     "staticColour": False,
     "position": {
         "xPos": WINDOW_WIDTH * SCALE* 3/4,
-        "yPos": WINDOW_HEIGHT * SCALE * 50/100
+        "yPos": WINDOW_HEIGHT * SCALE * 48/100
     },
     "velocity": {
-        "xVel": -100,
+        "xVel": -5,
         "yVel": 0,
-    },
-    "acceleration": {
-        "xAccel": 0,
-        "yAccel": 0
     }
     }
 ]

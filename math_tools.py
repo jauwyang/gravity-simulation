@@ -61,7 +61,7 @@ class Ring:
         self.x = x
         self.y = y
         self.r = r
-        self.rSquared = r * r
+        self.rSquared = self.r * self.r
 
     def intersects(self, range):
         xDist = abs(range.x - self.x)

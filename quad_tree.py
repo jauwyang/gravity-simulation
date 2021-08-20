@@ -32,12 +32,15 @@ class QuadTree:
         if (not self.boundary.contains(point.Pos)):
             return False
 
-        if (len(self.points) < self.capacity):
+        if (len(self.points) < self.capacity and not self.divided):
             self.points.append(point)
             return True
         else:
             if (not self.divided):
                 self.subdivide()
+                while self.points:
+                    part = self.points.pop()
+                    self.insert(part)
 
             if (self.northeast.insert(point)):
                 return True
@@ -49,7 +52,7 @@ class QuadTree:
                 return True
     
     def query(self, range, found = None):
-        if (not found):
+        if (found == None):
             found = []
         if (not range.intersects(self.boundary)):
             # empty array
@@ -66,7 +69,7 @@ class QuadTree:
         return found
 
     def draw(self, window):
-        pygame.draw.rect(window, (0, 255, 0), ((self.boundary.x - self.boundary.w) / SCALE, (self.boundary.y - self.boundary.h) / SCALE, (self.boundary.w * 2)  / SCALE, (self.boundary.h * 2) / SCALE), width = 1)
+        pygame.draw.rect(window, (0, 255, 0), ((self.boundary.x - self.boundary.w) / SCALE, (self.boundary.y - self.boundary.h) / SCALE, (self.boundary.w * 2) / SCALE, (self.boundary.h * 2) / SCALE), width = 1)
         if (self.divided):
             self.northeast.draw(window)
             self.northwest.draw(window)

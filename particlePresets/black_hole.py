@@ -16,9 +16,5 @@ black_hole = {
     "velocity": {
         "xVel": 0,
         "yVel": 0,
-    },
-    "acceleration": {
-        "xAccel": 0,
-        "yAccel": 0
     }
 }

@@ -5,7 +5,7 @@ import pygame
 import random
 from space_objects import Map, Particle
 import math
-
+import sys
 # ========= IMPORT PRESET MODULES =========
 from particlePresets.black_hole import black_hole
 
@@ -14,7 +14,7 @@ from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK_HOLE, BARRIER, RADI
 
 # ======== GLOBAL VARIABLES ========
 CLOCK = pygame.time.Clock()
-
+sys.setrecursionlimit(1500)
 
 # ========= The TODO list ==========
 # FUTURE PLANS: Make radius different?
@@ -58,7 +58,15 @@ def redrawGameWindow(window, space):
     for object in space.particles:
         xPos = round(object.Pos.x / SCALE)
         yPos = round(object.Pos.y / SCALE)
-        pygame.draw.circle(window, object.colour, (xPos, yPos), object.radius / SCALE)
+        if object.collided == True:
+            colour = RED
+            object.collided = False
+        else:
+            colour = object.colour
+        # if (xPos > WINDOW_WIDTH or yPos > WINDOW_HEIGHT):
+        #     print("Pos: " + str((xPos, yPos)))
+        #     print("Vel: " + str((object.Vel.x, object.Vel.y)))
+        pygame.draw.circle(window, colour, (xPos, yPos), object.radius / SCALE)
             
         if ACCELERATION_VECTOR:
             pygame.draw.line(window, RED, (object.Accel.x*3+xPos, object.Accel.y*3+yPos), (xPos, yPos), 3)
@@ -91,8 +99,6 @@ def createMasses(space):
             black_hole["position"]["yPos"], 
             black_hole["velocity"]["xVel"], 
             black_hole["velocity"]["yVel"], 
-            black_hole["acceleration"]["xAccel"], 
-            black_hole["acceleration"]["yAccel"], 
             staticMovement = black_hole["staticMovement"], 
             staticColour = black_hole["staticColour"],
             staticRadius = black_hole["staticRadius"],
@@ -105,10 +111,8 @@ def createMasses(space):
         for i in range(space.numberOfPlanets):
             xPos = random.randint(1, WINDOW_WIDTH * SCALE) 
             yPos = random.randint(1, WINDOW_HEIGHT * SCALE)
-            xVel = random.randint(-50000, 50000)
-            yVel = random.randint(-50000, 50000)
-            xAccel = 0
-            yAccel = 0
+            xVel = random.randint(-1, 1)
+            yVel = random.randint(-1, 1)
             density = None #TBD
 
             # Calculates Mass
@@ -127,7 +131,7 @@ def createMasses(space):
                         yPos = random.randint(1, WINDOW_HEIGHT * SCALE)
                         j = -1
                     j += 1
-            space.particles.append(Particle(mass, xPos, yPos, xVel, yVel, xAccel, yAccel, density = density, radius = r))
+            space.particles.append(Particle(mass, xPos, yPos, xVel, yVel, density = density, radius = r))
 
     else:
         from particlePresets.custom.test3 import particles
@@ -138,8 +142,6 @@ def createMasses(space):
                 particle["position"]["yPos"], 
                 particle["velocity"]["xVel"], 
                 particle["velocity"]["yVel"], 
-                particle["acceleration"]["xAccel"], 
-                particle["acceleration"]["yAccel"], 
                 staticMovement = particle["staticMovement"],
                 staticColour = particle["staticColour"],
                 radius = particle["radius"], 
@@ -168,8 +170,8 @@ def initializeSim():
     # Main simulation loop
     run = True
     while run:
-        pygame.time.delay(1)
-        # CLOCK.tick(30)
+        # pygame.time.delay(1)
+        CLOCK.tick(30)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False

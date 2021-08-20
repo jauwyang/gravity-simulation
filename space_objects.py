@@ -12,14 +12,15 @@ from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BARRIER, RADIUS, FPS, BLA
 
 class Particle:
     # TODO: make the radius depend on the density of the particle (which will depend on the scale of the map)
-    def __init__(self, mass, xPos, yPos, xVel, yVel, xAccel, yAccel, staticMovement = False, staticColour = False, staticRadius = False, density = None, radius = None, colour = None):
+    def __init__(self, mass, xPos, yPos, xVel, yVel, staticMovement = False, staticColour = False, staticRadius = False, density = None, radius = None, colour = None):
         self.mass = mass
         self.Pos = Point(xPos, yPos)
         self.Vel = Vector2D(xVel, yVel)
-        self.Accel = Vector2D(xAccel, yAccel)
+        self.Accel = Vector2D(0, 0)
         self.staticMovement = staticMovement
         self.staticColour = staticColour
         self.staticRadius = staticRadius
+        self.collided = False
         self.colour = colour
         self.density = None # TBD when radius implementation is added
         if (radius == None):
@@ -54,26 +55,26 @@ class Particle:
         self.Accel.x = 0
         self.Accel.y = 0
 
-        for particle in space.particles:
-            if self.Pos.x == particle.Pos.x and self.Pos.y == particle.Pos.y:
-                pass
-            else:
-                deltaX = abs(self.Pos.x - particle.Pos.x)
-                deltaY = abs(self.Pos.y - particle.Pos.y)
+        # for particle in space.particles:
+        #     if self.Pos.x == particle.Pos.x and self.Pos.y == particle.Pos.y:
+        #         pass
+        #     else:
+        #         deltaX = abs(self.Pos.x - particle.Pos.x)
+        #         deltaY = abs(self.Pos.y - particle.Pos.y)
 
-                radius = math.sqrt((deltaX)**2 + (deltaY)**2)
-                acceleration = G*particle.mass / (radius**2)
+        #         radius = math.sqrt((deltaX)**2 + (deltaY)**2)
+        #         acceleration = G*particle.mass / (radius**2)
                 
-                xAcceleration = acceleration * deltaX / radius # similar triangles
-                yAcceleration = acceleration * deltaY / radius
+        #         xAcceleration = acceleration * deltaX / radius # similar triangles
+        #         yAcceleration = acceleration * deltaY / radius
 
-                if particle.Pos.x < self.Pos.x:
-                    xAcceleration *= -1
-                if particle.Pos.y < self.Pos.y:
-                    yAcceleration *= -1
+        #         if particle.Pos.x < self.Pos.x:
+        #             xAcceleration *= -1
+        #         if particle.Pos.y < self.Pos.y:
+        #             yAcceleration *= -1
 
-                self.Accel.x += xAcceleration
-                self.Accel.y += yAcceleration
+        #         self.Accel.x += xAcceleration
+        #         self.Accel.y += yAcceleration
 
 
     def intersects(self, otherP):

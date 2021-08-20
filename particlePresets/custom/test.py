@@ -13,10 +13,6 @@ particles = [
     "velocity": {
         "xVel": 100000,
         "yVel": 0,
-    },
-    "acceleration": {
-        "xAccel": 0,
-        "yAccel": 0
     }
     },
     {
@@ -31,10 +27,6 @@ particles = [
     "velocity": {
         "xVel": 0,
         "yVel": 0,
-    },
-    "acceleration": {
-        "xAccel": 0,
-        "yAccel": 0
     }
     }
 ]
