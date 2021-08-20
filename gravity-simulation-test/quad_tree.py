@@ -53,7 +53,7 @@ class QuadTree:
                 return True
     
     def query(self, range, found = None):
-        if (not found):
+        if (found == None):
             found = []
         if (not range.intersects(self.boundary)):
             # empty array
@@ -73,7 +73,6 @@ class QuadTree:
     def draw(self, window):
 
         pygame.draw.rect(window, (0, 255, 0), (self.boundary.x - self.boundary.w, self.boundary.y - self.boundary.h, (self.boundary.w * 2)  / SCALE, (self.boundary.h * 2)/ SCALE), width = 1)
-        # print(len(self.points))
         # pygame.draw.rect(window, (0, 255, 0), (self.boundary.x, self.boundary.y, (self.boundary.x + self.boundary.w) / SCALE, (self.boundary.y + self.boundary.h) / SCALE), width = 2)
         if (self.divided):
             self.northeast.draw(window)

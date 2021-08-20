@@ -4,6 +4,7 @@ import pygame
 import random
 from space_objects import Particle
 import math
+import sys
 
 
 # ======== CONFIG VARIABLES ========
@@ -11,9 +12,9 @@ from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK_HOLE, BARRIER, RADI
 
 # ======== GLOBAL VARIABLES ========
 CLOCK = pygame.time.Clock()
-
+sys.setrecursionlimit(2500)
 MASSES = []
-PLANETS = 1000
+PLANETS = 1500
 
 
 
@@ -63,6 +64,7 @@ def redrawGameWindow(window):
         xPos = round(object.Pos.x )
         yPos = round(object.Pos.y)
         pygame.draw.circle(window, object.colour, (xPos, yPos), object.radius / SCALE)
+        # pygame.draw.circle(window, (255,0,255), (xPos, yPos), object.radius * 2.5, width = 1)
         object.colour = WHITE
         object.updatePosition()
 
@@ -117,7 +119,7 @@ def doInelasticCollision(p1, p2):
     MASSES.remove(p2)
 
 
-def doTypeOfCollision( p1, p2):
+def doTypeOfCollision(p1, p2):
 
 
     # TODO: determine whether collision is inelastic vs elastic (bounce off or stick together)
@@ -134,22 +136,21 @@ def checkCollision(window):
     qtree = QuadTree(BOUNDARY, 2)
     for particle in MASSES:
         qtree.insert(particle)
-    print("HEIGHT: " + str(qtree.height()))
     qtree.draw(window)
 
     testRange = Rectangle(275, 275, 250, 250)
     pygame.draw.rect(window, (0,0,255), (testRange.x - testRange.w, testRange.y - testRange.h, (testRange.w * 2)  / SCALE, (testRange.h * 2)/ SCALE), width = 1)
     list = qtree.query(testRange)
-    print(len(list))
     for part in list:
         part.colour = (0,0,255)
 
-    # for mainParticle in MASSES:
-    #     range = Ring(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius * 2.5)
-    #     closeParticles = qtree.query(range)
-    #     for otherParticle in closeParticles:
-    #         if (mainParticle != otherParticle and mainParticle.intersects(otherParticle)):
-    #             doTypeOfCollision(mainParticle, otherParticle)
+    for mainParticle in MASSES:
+        range = Ring(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius * 3)
+        testRange = Rectangle(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius, mainParticle.radius)
+        closeParticles = qtree.query(testRange)
+        for otherParticle in closeParticles:
+            if (mainParticle != otherParticle and mainParticle.intersects(otherParticle)):
+                doTypeOfCollision(mainParticle, otherParticle)
 
 
 
