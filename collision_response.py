@@ -104,7 +104,6 @@ def combineCollisionRadius(p1, p2):
 
 
 def checkCollision(space, window):
-    # TODO: have to account for deleted particles in array
     # TODO: account for the "range" of a particle since it only works if ALL particles have the same radius
     qtree = QuadTree(BOUNDARY, 2)
     for particle in space.particles:
