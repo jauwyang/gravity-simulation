@@ -33,26 +33,20 @@ def doElasticCollison(p1, p2):
 
 
 def doInelasticCollision(p1, p2, space):
-    mass = p1.mass + p2.mass
+    p1.mass += p2.mass
 
-    xPos = (p1.Pos.x + p2.Pos.x) / 2
-    yPos = (p1.Pos.y + p2.Pos.y) / 2
+    if p1.mass < p2.mass:
+        p1.Pos = Point(p2.Pos.x, p2.Pos.y)
+    elif p1.mass == p2.mass:
+        p1.Pos = Point((p1.Pos.x + p2.Pos.x) / 2, (p1.Pos.y + p2.Pos.y) / 2)
 
     xVel = (p1.mass*p1.Vel.x + p2.mass*p2.Vel.x) / (p1.mass + p2.mass)
     yVel = (p1.mass*p1.Vel.y + p2.mass*p2.Vel.y) / (p1.mass + p2.mass)
-
-    xAccel = (p1.Accel.x + p2.Accel.x) / 2
-    yAccel = (p1.Accel.y + p2.Accel.y) / 2
-
-    # Make 1st object the new object
-    p1.mass = mass
-    p1.Pos = Point(xPos, yPos)
     p1.Vel = Vector2D(xVel, yVel)
-    p1.Accel = Vector2D(xAccel, yAccel)
 
     if p1.staticMovement or p2.staticMovement:
         p1.staticMovement = True
-    combineCollisionColours(space, p1, p2)
+    combineCollisionColours(p1, p2)
     combineCollisionRadius(p1, p2)
 
     space.particles.remove(p2)
@@ -70,7 +64,7 @@ def doTypeOfCollision(space, p1, p2):
     doInelasticCollision(p1, p2, space)
 
 
-def combineCollisionColours(space, p1, p2):
+def combineCollisionColours(p1, p2):
     if p1.staticColour and p2.staticColour:
         if p2.colour == BLACK or p1.colour == BLACK:
             p1.changeColour(BLACK)

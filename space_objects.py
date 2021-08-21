@@ -55,26 +55,26 @@ class Particle:
         self.Accel.x = 0
         self.Accel.y = 0
 
-        # for particle in space.particles:
-        #     if self.Pos.x == particle.Pos.x and self.Pos.y == particle.Pos.y:
-        #         pass
-        #     else:
-        #         deltaX = abs(self.Pos.x - particle.Pos.x)
-        #         deltaY = abs(self.Pos.y - particle.Pos.y)
+        for particle in space.particles:
+            if self.Pos.x == particle.Pos.x and self.Pos.y == particle.Pos.y:
+                pass
+            else:
+                deltaX = abs(self.Pos.x - particle.Pos.x)
+                deltaY = abs(self.Pos.y - particle.Pos.y)
 
-        #         radius = math.sqrt((deltaX)**2 + (deltaY)**2)
-        #         acceleration = G*particle.mass / (radius**2)
+                radius = math.sqrt((deltaX)**2 + (deltaY)**2)
+                acceleration = G*particle.mass / (radius**2)
                 
-        #         xAcceleration = acceleration * deltaX / radius # similar triangles
-        #         yAcceleration = acceleration * deltaY / radius
+                xAcceleration = acceleration * deltaX / radius # similar triangles
+                yAcceleration = acceleration * deltaY / radius
 
-        #         if particle.Pos.x < self.Pos.x:
-        #             xAcceleration *= -1
-        #         if particle.Pos.y < self.Pos.y:
-        #             yAcceleration *= -1
+                if particle.Pos.x < self.Pos.x:
+                    xAcceleration *= -1
+                if particle.Pos.y < self.Pos.y:
+                    yAcceleration *= -1
 
-        #         self.Accel.x += xAcceleration
-        #         self.Accel.y += yAcceleration
+                self.Accel.x += xAcceleration
+                self.Accel.y += yAcceleration
 
 
     def intersects(self, otherP):

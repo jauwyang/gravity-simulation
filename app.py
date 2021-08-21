@@ -64,10 +64,10 @@ def redrawGameWindow(window, space):
         else:
             colour = object.colour
         # if (xPos > WINDOW_WIDTH or yPos > WINDOW_HEIGHT):
-        #     print("Pos: " + str((xPos, yPos)))
-        #     print("Vel: " + str((object.Vel.x, object.Vel.y)))
+        # print("Pos: " + str((xPos, yPos)))
+        # print("Vel: " + str((object.Vel.x, object.Vel.y)))
         pygame.draw.circle(window, colour, (xPos, yPos), object.radius / SCALE)
-            
+
         if ACCELERATION_VECTOR:
             pygame.draw.line(window, RED, (object.Accel.x*3+xPos, object.Accel.y*3+yPos), (xPos, yPos), 3)
         if VELOCITY_VECTOR:
@@ -111,8 +111,8 @@ def createMasses(space):
         for i in range(space.numberOfPlanets):
             xPos = random.randint(1, WINDOW_WIDTH * SCALE) 
             yPos = random.randint(1, WINDOW_HEIGHT * SCALE)
-            xVel = random.randint(-1, 1)
-            yVel = random.randint(-1, 1)
+            xVel = random.randint(-1000, 1000)
+            yVel = random.randint(-1000, 1000)
             density = None #TBD
 
             # Calculates Mass
@@ -167,11 +167,12 @@ def initializeSim():
     # Initialize pygame
     pygame.init()
     window = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
     # Main simulation loop
     run = True
     while run:
         # pygame.time.delay(1)
-        CLOCK.tick(30)
+        CLOCK.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
