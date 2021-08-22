@@ -1,4 +1,5 @@
-# GRAVITY SIMULATION
+*Created by Joshua Auw-Yang*
+
 
 This is a 2D simulation that recreates the motion of bodies of masses in space through gravitational attraction.
 This provides insight on how moons, planets, and galaxies like the Milky Way are formed.
@@ -36,7 +37,7 @@ python3 -m pip install --user virtualenv
 ```
 
 
-Create a virtual environment by running the following command:
+Now, create a virtual environment called ```env``` by running the following command in the root directory of the project:
 * Windows
 ```sh
 py -m venv env
@@ -46,3 +47,37 @@ py -m venv env
 python3 -m venv env
 ```
 
+To activate the environment run ```env\Scripts\activate``` on Windows and ```source env/bin/activate``` for Unix/MacOS.
+To deactivate run ```deactivate```
+
+To install the required packages to run the project, use ```py -m pip install -r requirements.txt``` on Windows and ```python3 -m pip install -r requirements.txt``` on Unix/MacOS.
+
+# How to Use
+
+To start the program, run the `app.py` script.
+
+You will be prompted with a text asking if you would like the simulated system to contain bodies of masses with **random** coordinates, masses, and velocities or to generate particles with **preset data**.
+
+The **preset data** can be configured under the ```particlePresets\custom``` directory. The program will use the data stored in `preset.py` for the particle presets. 
+
+## Configuration
+
+The settings of the simulation can be adjusted in the ```config.py``` file. The following parameters can be adjusted:
+
+* SCALE - Adjusts the relative scale of the entire simulation. The units of the scale is in meters (i.e. 100 units = 100 meters). Note: The randomly generated value for the masses must be adjusted for smaller scales.
+* RADIUS - Adjusts the radius of the displayed particles
+* BARRIER - Toggles a barrier along the borders of the simulation that prevents particles from leaving the screen (they will bounce off)
+* BLACK_HOLE - Toggles a static black mass at the centre of the screen with a properties determined by ```custom\black_hole.py```
+* CENTRE_OF_MASS - Toggles a point on the map that indicates the location of the centre of mass of the simulation
+* ACCELERATION_VECTOR - Toggles a red vector representing the acceleration of each particle
+* VELOCITY_VECTOR - Toggles a green vector on all particles representing their velocitites
+
+## Understanding the Simulation
+
+### Coloured Masses
+
+The simulation uses a colour map from [Matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) to visually represent the weight of each particle.
+
+Currently the simulation uses the **Plasma** colour map as shown below. Their colour is determined by a logorithmic scale with lighter masses on the left of the colour gradient and heavier masses on the right.
+
+![image of colourmap](https://matplotlib.org/stable/_images/sphx_glr_colormaps_001.png)

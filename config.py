@@ -6,7 +6,6 @@ import matplotlib.cm
 WINDOW_HEIGHT = 900
 WINDOW_WIDTH = 900
 FPS = 60
-SCALE = 1000000 # 100,000 km
 TIME_INTERVAL = 200
 G = 6.67E-11
 COLOUR_MAP = matplotlib.cm.get_cmap('plasma')
@@ -18,6 +17,7 @@ GREEN = (0, 255, 0)
 
 
 # ======== CUSTOMIZABLE VARIABLES ========
+SCALE = 1000000 # 100,000 km
 RADIUS = 4
 BARRIER = True
 BLACK_HOLE = False

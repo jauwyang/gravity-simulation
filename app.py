@@ -63,9 +63,7 @@ def redrawGameWindow(window, space):
             object.collided = False
         else:
             colour = object.colour
-        # if (xPos > WINDOW_WIDTH or yPos > WINDOW_HEIGHT):
-        # print("Pos: " + str((xPos, yPos)))
-        # print("Vel: " + str((object.Vel.x, object.Vel.y)))
+
         pygame.draw.circle(window, colour, (xPos, yPos), object.radius / SCALE)
 
         if ACCELERATION_VECTOR:
