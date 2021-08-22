@@ -7,7 +7,7 @@ from space_objects import Map, Particle
 import math
 import sys
 # ========= IMPORT PRESET MODULES =========
-from particlePresets.black_hole import black_hole
+from particle_presets.black_hole import black_hole
 
 # ======== CONFIG VARIABLES ========
 from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK_HOLE, BARRIER, RADIUS, FPS, BLACK, WHITE, GREY, RED, GREEN, TIME_INTERVAL, ACCELERATION_VECTOR, VELOCITY_VECTOR, CENTER_OF_MASS
@@ -134,7 +134,7 @@ def createMasses(space):
             space.particles.append(Particle(mass, xPos, yPos, xVel, yVel, density = density, radius = r))
 
     else:
-        from particlePresets.custom.test3 import particles
+        from particle_presets.custom.preset import particles
         for particle in particles:
             space.particles.append(Particle(
                 particle["mass"], 
