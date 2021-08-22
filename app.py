@@ -67,9 +67,9 @@ def redrawGameWindow(window, space):
         pygame.draw.circle(window, colour, (xPos, yPos), object.radius / SCALE)
 
         if ACCELERATION_VECTOR:
-            pygame.draw.line(window, RED, (object.Accel.x*3+xPos, object.Accel.y*3+yPos), (xPos, yPos), 3)
+            pygame.draw.line(window, RED, (object.Accel.x*12+xPos, object.Accel.y*12+yPos), (xPos, yPos), 3)
         if VELOCITY_VECTOR:
-            pygame.draw.line(window, GREEN, (object.Vel.x/10000+xPos, object.Vel.y/10000+yPos), (xPos, yPos), 3)
+            pygame.draw.line(window, GREEN, (object.Vel.x/100+xPos, object.Vel.y/100+yPos), (xPos, yPos), 3)
 
         # update particle properties
         object.updatePosition()
@@ -81,7 +81,7 @@ def redrawGameWindow(window, space):
         space.updateCenterMass()
         x = space.xCenterMass / space.totalMass / SCALE
         y = space.yCenterMass / space.totalMass / SCALE
-        pygame.draw.circle(window, BLACK, (x,y), 2)
+        pygame.draw.circle(window, WHITE, (x,y), 2)
 
     # Run collision check
     checkCollision(space, window)
@@ -115,7 +115,7 @@ def createMasses(space):
 
             # Calculates Mass
             a = random.randint(5, 9)
-            power = random.randint(5, 25)
+            power = random.randint(5, 23)
             mass = float(str(a) + 'e' + str(power)) #TBD
 
             r = RADIUS * SCALE # might change / based on how to calculate 
@@ -169,7 +169,6 @@ def initializeSim():
     # Main simulation loop
     run = True
     while run:
-        # pygame.time.delay(1)
         CLOCK.tick(60)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:

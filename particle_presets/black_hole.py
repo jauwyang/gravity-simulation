@@ -3,7 +3,7 @@ from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK_HOLE, BARRIER, RADI
 
 
 black_hole = {
-    "mass": 2e30,
+    "mass": 1e25,
     "colour": BLACK,
     "radius": 10,
     "staticMovement": True,

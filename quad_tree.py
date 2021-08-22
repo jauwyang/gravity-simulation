@@ -69,7 +69,7 @@ class QuadTree:
         return found
 
     def draw(self, window):
-        pygame.draw.rect(window, (0, 255, 0), ((self.boundary.x - self.boundary.w) / SCALE, (self.boundary.y - self.boundary.h) / SCALE, (self.boundary.w * 2) / SCALE, (self.boundary.h * 2) / SCALE), width = 1)
+        pygame.draw.rect(window, (0, 0, 255), ((self.boundary.x - self.boundary.w) / SCALE, (self.boundary.y - self.boundary.h) / SCALE, (self.boundary.w * 2) / SCALE, (self.boundary.h * 2) / SCALE), width = 1)
         if (self.divided):
             self.northeast.draw(window)
             self.northwest.draw(window)

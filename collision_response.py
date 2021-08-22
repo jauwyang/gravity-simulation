@@ -3,7 +3,7 @@ from quad_tree import QuadTree
 from math_tools import Rectangle, Vector2D, Point, Ring
 
 # ======== CONFIG VARIABLES ========
-from config import WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK
+from config import COLLISION_INDICATOR, WINDOW_HEIGHT, WINDOW_WIDTH, SCALE, BLACK, QUAD_TREE_GRAPH
 BOUNDARY = Rectangle(WINDOW_WIDTH * SCALE/2, WINDOW_HEIGHT * SCALE/2, WINDOW_WIDTH * SCALE / 2, WINDOW_HEIGHT * SCALE / 2)
 
 
@@ -58,9 +58,9 @@ def doTypeOfCollision(space, p1, p2):
 
     # TODO: determine whether collision is inelastic vs elastic (bounce off or stick together)
     # doElasticCollison(p1, p2)
-
-    p1.collided = True
-    p2.collided = True
+    if COLLISION_INDICATOR:
+        p1.collided = True
+        p2.collided = True
     doInelasticCollision(p1, p2, space)
 
 
@@ -102,15 +102,16 @@ def checkCollision(space, window):
     qtree = QuadTree(BOUNDARY, 2)
     for particle in space.particles:
         qtree.insert(particle)
-
-    qtree.draw(window)
+    
+    if QUAD_TREE_GRAPH:
+        qtree.draw(window)
 
     for mainParticle in space.particles:
         if mainParticle in space.particles:
             range = Rectangle(mainParticle.Pos.x, mainParticle.Pos.y, mainParticle.radius, mainParticle.radius*1.2)
             closeParticles = qtree.query(range)
             for otherParticle in closeParticles:
-                if (mainParticle != otherParticle and mainParticle.intersects(otherParticle)):
+                if (mainParticle != otherParticle and mainParticle.intersects(otherParticle) and otherParticle in space.particles):
                     doTypeOfCollision(space, mainParticle, otherParticle)
         else:
             pass

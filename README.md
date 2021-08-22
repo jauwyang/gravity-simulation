@@ -64,13 +64,16 @@ The **preset data** can be configured under the ```particlePresets\custom``` dir
 
 The settings of the simulation can be adjusted in the ```config.py``` file. The following parameters can be adjusted:
 
-* SCALE - Adjusts the relative scale of the entire simulation. The units of the scale is in meters (i.e. 100 units = 100 meters). Note: The randomly generated value for the masses must be adjusted for smaller scales.
-* RADIUS - Adjusts the radius of the displayed particles
-* BARRIER - Toggles a barrier along the borders of the simulation that prevents particles from leaving the screen (they will bounce off)
-* BLACK_HOLE - Toggles a static black mass at the centre of the screen with a properties determined by ```custom\black_hole.py```
-* CENTRE_OF_MASS - Toggles a point on the map that indicates the location of the centre of mass of the simulation
-* ACCELERATION_VECTOR - Toggles a red vector representing the acceleration of each particle
-* VELOCITY_VECTOR - Toggles a green vector on all particles representing their velocitites
+* *SCALE* - Adjusts the relative scale of the entire simulation. The units of the scale is in meters (i.e. 100 units = 100 meters). Note: The randomly generated value for the masses must be adjusted for smaller scales.
+* *RADIUS* - Adjusts the radius of the displayed particles
+* *TIME_INTERVAL* - The time interval that passes between every frame (1 unit = 1 second)
+* *BARRIER* - Toggles a barrier along the borders of the simulation that prevents particles from leaving the screen (they will bounce off)
+* *QUAD_TREE_GRAPH* - Toggles a graph of the quad tree used for collision detection
+* *COLLISION_INDICATOR* - Toggle that makes particles that have collided flash red 
+* *BLACK_HOLE* - Toggles a static black mass at the centre of the screen with a properties determined by ```custom\black_hole.py```
+* *CENTRE_OF_MASS* - Toggles a point on the map that indicates the location of the centre of mass of the simulation
+* *ACCELERATION_VECTOR* - Toggles a red vector representing the acceleration of each particle
+* *VELOCITY_VECTOR* - Toggles a green vector on all particles representing their velocitites
 
 ## Understanding the Simulation
 
