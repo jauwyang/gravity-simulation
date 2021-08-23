@@ -1,8 +1,7 @@
-from math_tools import Rectangle, Point
+from math_tools import Rectangle
 import pygame
 from config import SCALE
 
-# https://www.youtube.com/watch?v=OJxEcs0w_kE
 
 class QuadTree:
     def __init__(self, boundary, n):

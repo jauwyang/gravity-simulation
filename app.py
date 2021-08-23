@@ -19,6 +19,8 @@ sys.setrecursionlimit(1500)
 # ========= The TODO list ==========
 # FUTURE PLANS: Make radius different?
 # TODO: determine density generation
+# TODO: determine whether collision is inelastic vs elastic (bounce off or stick together)
+# TODO: account for the "range" of a particle since collision detection only works for 1 single radius
 
 
 def userCustomization():

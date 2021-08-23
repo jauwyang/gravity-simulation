@@ -1,5 +1,4 @@
 # ======== IMPORT MODULES ========
-import pygame
 import matplotlib.cm
 
 # ======== GLOBAL VARIABLES ========
