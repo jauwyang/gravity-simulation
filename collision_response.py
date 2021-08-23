@@ -54,10 +54,7 @@ def doInelasticCollision(p1, p2, space):
 
 
 def doTypeOfCollision(space, p1, p2):
-
-
     # TODO: determine whether collision is inelastic vs elastic (bounce off or stick together)
-    # doElasticCollison(p1, p2)
     if COLLISION_INDICATOR:
         p1.collided = True
         p2.collided = True
@@ -69,7 +66,12 @@ def combineCollisionColours(p1, p2):
         if p2.colour == BLACK or p1.colour == BLACK:
             p1.changeColour(BLACK)
         else:
-            p1.changeColour((((p1.colour[0] + p2.colour[0]) / 2), ((p1.colour[1] + p2.colour[1]) / 2),) ((p1.colour[2] + p2.colour[2]) / 2))
+            if p1.mass < p2.mass:
+                p1.changeColour(p2.colour)
+            elif p1.mass > p2.mass:
+                pass
+            else:
+                p1.changeColour((((p1.colour[0] + p2.colour[0]) / 2), ((p1.colour[1] + p2.colour[1]) / 2), ((p1.colour[2] + p2.colour[2]) / 2)))
     elif p2.staticColour:
         p1.changeColour(p2.colour)
         p1.staticColour = True
@@ -82,7 +84,12 @@ def combineCollisionColours(p1, p2):
 def combineCollisionRadius(p1, p2):
     if p1.staticRadius and p2.staticRadius and p1.radius != p2.radius:
         if (p2.colour == BLACK and p1.colour == BLACK) or (p2.colour != BLACK and p1.colour != BLACK):
-            p1.radius = (p1.radius + p2.radius) / 2
+            if p1.mass < p2.mass:
+                p1.radius = p2.radius
+            elif p1.mass > p2.mass:
+                pass
+            else:
+                p1.radius = (p1.radius + p2.radius) / 2
         elif p2.colour == BLACK:
             p1.radius = p2.radius
         else:
@@ -93,7 +100,12 @@ def combineCollisionRadius(p1, p2):
     elif p1.staticRadius:
         pass
     else:
-        p1.radius = (p1.radius + p2.radius) / 2
+        if p1.mass < p2.mass:
+            p1.radius = p2.radius
+        elif p1.mass > p2.mass:
+            pass
+        else:
+            p1.radius = (p1.radius + p2.radius) / 2
 
 
 

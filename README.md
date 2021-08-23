@@ -58,7 +58,7 @@ To start the program, run the `app.py` script.
 
 You will be prompted with a text asking if you would like the simulated system to contain bodies of masses with **random** coordinates, masses, and velocities or to generate particles with **preset data**.
 
-The **preset data** can be configured under the ```particlePresets\custom``` directory. The program will use the data stored in `preset.py` for the particle presets. 
+The **preset data** can be configured under the ```particlePresets\custom``` directory. The program will use the data stored in `preset.py` for the particle presets. The `preset_template.py` script can be used to help create simulations specified by the user. Two presets have been provided: `preset_single_orbit.py` and `preset_double_orbit.py`. These can be used by changing their names to `preset.py`.
 
 ## Configuration
 

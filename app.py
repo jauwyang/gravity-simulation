@@ -18,11 +18,7 @@ sys.setrecursionlimit(1500)
 
 # ========= The TODO list ==========
 # FUTURE PLANS: Make radius different?
-# TODO: finish collision algorithm
-# TODO: determine GOOD mass generation
-# TODO: determine GOOD density generation
-# TODO: finish pygame repeat run
-    # TODO: incorporate collision detection in for loop of "redraw game window"
+# TODO: determine density generation
 
 
 def userCustomization():
@@ -142,7 +138,8 @@ def createMasses(space):
                 particle["velocity"]["yVel"], 
                 staticMovement = particle["staticMovement"],
                 staticColour = particle["staticColour"],
-                radius = particle["radius"], 
+                staticRadius = particle["staticRadius"],
+                radius = particle["radius"] * SCALE, 
                 colour = particle["colour"]
             ))
 
@@ -169,7 +166,7 @@ def initializeSim():
     # Main simulation loop
     run = True
     while run:
-        CLOCK.tick(60)
+        CLOCK.tick(FPS)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False

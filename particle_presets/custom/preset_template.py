@@ -4,9 +4,10 @@ particles = [
     {
     "mass": None,
     "colour": None,
-    "radius": None * SCALE,
+    "radius": None,
     "staticMovement": False,
     "staticColour": False,
+    "staticRadius": False,
     "position": {
         "xPos": None,
         "yPos": None
@@ -19,9 +20,10 @@ particles = [
     {
     "mass": None,
     "colour": None,
-    "radius": None * SCALE,
+    "radius": None,
     "staticMovement": False,
     "staticColour": False,
+    "staticRadius": False,
     "position": {
         "xPos": None,
         "yPos": None
