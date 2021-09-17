@@ -40,12 +40,14 @@ def doInelasticCollision(p1, p2, space):
     elif p1.mass == p2.mass:
         p1.Pos = Point((p1.Pos.x + p2.Pos.x) / 2, (p1.Pos.y + p2.Pos.y) / 2)
 
-    xVel = (p1.mass*p1.Vel.x + p2.mass*p2.Vel.x) / (p1.mass + p2.mass)
-    yVel = (p1.mass*p1.Vel.y + p2.mass*p2.Vel.y) / (p1.mass + p2.mass)
-    p1.Vel = Vector2D(xVel, yVel)
-
     if p1.staticMovement or p2.staticMovement:
         p1.staticMovement = True
+    
+    if not p1.staticMovement:
+        xVel = (p1.mass*p1.Vel.x + p2.mass*p2.Vel.x) / (p1.mass + p2.mass)
+        yVel = (p1.mass*p1.Vel.y + p2.mass*p2.Vel.y) / (p1.mass + p2.mass)
+        p1.Vel = Vector2D(xVel, yVel)
+  
     combineCollisionColours(p1, p2)
     combineCollisionRadius(p1, p2)
 
