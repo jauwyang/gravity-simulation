@@ -77,6 +77,11 @@ The settings of the simulation can be adjusted in the ```config.py``` file. The 
 
 ## Understanding the Simulation
 
+### Preview
+
+[Here](https://youtu.be/ms6C7Pz67qg) is a video showcasing the custom and random settings of the simulation along with the velocity vectors and quad tree graph.
+
+
 ### Coloured Masses
 
 The simulation uses a colour map from [Matplotlib](https://matplotlib.org/stable/tutorials/colors/colormaps.html) to visually represent the weight of each particle.
